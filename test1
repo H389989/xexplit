@@ -1,0 +1,37 @@
+local player = game.Players.LocalPlayer
+local players = game:GetService("Players")
+local playername = player.Name
+
+
+local gui = Instance.new("ScreenGui")
+gui.Name = "exploit"
+gui.Parent = player:WaitForChild("PlayerGui")
+
+local button = Instance.new("TextButton")
+button.Size = UDim2.new(0, 100, 0, 50)
+button.Position = UDim2.new(0.5, -50, 0.5, -25)
+button.Text = "Blind Player"
+button.Parent = gui
+
+local textarea = Instance.new("TextBox")
+textarea.Size = UDim2.new(0, 200, 0, 50)
+textarea.Position = UDim2.new(0.5, -100, 0.5, 50)
+textarea.Text = ""
+textarea.Parent = gui
+
+button.MouseButton1Click:Connect(function()
+	player = players:FindFirstChild(textarea.Text)
+	local gui = Instance.new("ScreenGui")
+	gui.Name = "LocalScreenBlock"
+	gui.IgnoreGuiInset = true
+	gui.ResetOnSpawn = false
+	gui.Parent = players:FindFirstChild(textarea.Text):WaitForChild("PlayerGui")
+
+	-- Fullscreen frame
+	local frame = Instance.new("Frame")
+	frame.Size = UDim2.fromScale(1, 1)
+	frame.Position = UDim2.fromScale(0, 0)
+	frame.BackgroundColor3 = Color3.new(0, 0, 0)
+	frame.BorderSizePixel = 0
+	frame.Parent = gui
+end)
