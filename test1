@@ -1,26 +1,28 @@
 local gui = Instance.new("ScreenGui")
-gui.Name = "exploit"
-gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+gui.name = "exploit"
+gui.Parent = game.Players.LocalPlayer.PlayerGui
 
 local button = Instance.new("TextButton")
 button.Size = UDim2.new(0, 100, 0, 50)
-button.Position = UDim2.new(0.5, -50, 0.5, -25)
-button.Text = "BlindPlayer"
+button.Position = UDim2.new(0, 10, 0, 10)
+button.Text = "EXPLOIT"
 button.Parent = gui
 
 local textarea = Instance.new("TextBox")
 textarea.Size = UDim2.new(0, 200, 0, 100)
-textarea.Position = UDim2.new(0.5, -100, 0.5, 50)
+textarea.Position = UDim2.new(0, 120, 0, 10)
 textarea.Text = ""
 textarea.Parent = gui
 
 button.MouseButton1Click:Connect(function()
-	local playerName = textarea.Text
-	local player = game.Players:FindFirstChild(playerName)
-	
-	local frame = Instance.new("Frame")
-	frame.Size = UDim2.new(99999, 0, 0, 100000000)
-	frame.Position = UDim2.new(0, 0, 0, -66)
-	frame.BackgroundColor3 = Color3.new(0, 0, 0)
-	frame.Parent = player:WaitForChild("PlayerGui"):WaitForChild("Freecam")
+	local player = game.Players:WaitForChild(textarea.text)
+	local backpack = player:WaitForChild("Backpack")
+	local items = backpack:GetChildren()
+	for _, item in ipairs(items) do
+		item:Destroy()
+	end
+	local tools = player:WaitForChild("StarterGear"):GetChildren()
+	for _, tool in ipairs(tools) do
+		tool:Destroy()
+	end
 end)
